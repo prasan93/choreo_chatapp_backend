@@ -31,7 +31,23 @@ FROM nginx:latest AS nginx_server
 # Copy NGINX configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Stage 3: Final stage combining Flask app and NGINX
+# Stage 3: PostgreSQL Setup
+FROM postgres:latest AS postgres_setup
+
+# Environment variables for PostgreSQL
+ENV POSTGRES_DB=idea
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=Prasan123#
+ENV DB_NAME=idea
+ENV DB_USERNAME=postgres
+ENV DB_PASSWORD=Prasan123#
+ENV DB_HOST=init-db
+ENV DB_PORT=5432
+
+# Expose PostgreSQL port
+EXPOSE 5432
+
+# Stage 4: Final stage combining Flask app, NGINX, and PostgreSQL
 FROM flask_app AS final
 
 # Expose port 80 to the outside world
@@ -42,14 +58,5 @@ COPY --from=nginx_server /etc/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Install PostgreSQL client
 USER root
-RUN apt-get update && \
-    apt-get install -y postgresql && \
-    apt-get clean
-USER 10015
 
-# Database initialization
-# You may need to replace these variables with actual values
-# Depending on your application's requirements
-# Initialize and start PostgreSQL service
-RUN service postgresql start && \
-    psql -U postgres -c "CREATE DATABASE ${DB_NAME};"
+# Add any additional setup or configuration steps here if needed
