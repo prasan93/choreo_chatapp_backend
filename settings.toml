@@ -8,7 +8,7 @@ DEBUG = true
 POSTGRES_DB_NAME = "idea"
 POSTGRES_USER = "postgres"
 POSTGRES_PASSWORD = "Prasan123#"
-POSTGRES_HOST = "localhost"
+POSTGRES_HOST = "init-db"
 POSTGRES_PORT = "5432"
 FRONTEND_URL = "http://localhost:3000"
 
@@ -17,7 +17,7 @@ DEBUG = true
 POSTGRES_DB_NAME = "idea"
 POSTGRES_USER = "postgres"
 POSTGRES_PASSWORD = "Prasan123#"
-POSTGRES_HOST = "localhost"
+POSTGRES_HOST = "init-db"
 POSTGRES_PORT = "5432"
 FRONTEND_URL = "http://localhost:3000"
 
@@ -26,6 +26,6 @@ DEBUG = false
 POSTGRES_DB_NAME = "idea"
 POSTGRES_USER = "postgres"
 POSTGRES_PASSWORD = "Prasan123#"
-POSTGRES_HOST = "localhost"
+POSTGRES_HOST = "init-db"
 POSTGRES_PORT = "5432"
 FRONTEND_URL = "http://localhost:3000"
