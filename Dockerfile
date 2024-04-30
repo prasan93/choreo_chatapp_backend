@@ -43,14 +43,13 @@ COPY --from=nginx_server /etc/nginx/nginx.conf /etc/nginx/nginx.conf
 # Install PostgreSQL client
 USER root
 RUN apt-get update && \
-    apt-get install -y postgresql-client && \
+    apt-get install -y postgresql && \
     apt-get clean
 USER 10015
 
 # Database initialization
 # You may need to replace these variables with actual values
 # Depending on your application's requirements
-RUN pg_ctl initdb -D /var/lib/postgresql/data && \
-    pg_ctl start -D /var/lib/postgresql/data && \
-    psql -U ${DB_USERNAME} -d ${DB_NAME} -c "CREATE TABLE IF NOT EXISTS your_table_name (column1 type1, column2 type2);" && \
-    pg_ctl stop -D /var/lib/postgresql/data
+# Initialize and start PostgreSQL service
+RUN service postgresql start && \
+    psql -U postgres -c "CREATE DATABASE ${DB_NAME};"
