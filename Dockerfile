@@ -56,7 +56,3 @@ EXPOSE 80
 # Copy NGINX configuration from nginx_server stage
 COPY --from=nginx_server /etc/nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Install PostgreSQL client
-USER root
-
-# Add any additional setup or configuration steps here if needed
