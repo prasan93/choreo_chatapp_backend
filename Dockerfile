@@ -10,13 +10,8 @@ COPY . /app
 # Install any needed dependencies specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Create a non-root user with user ID between 10000 and 20000
-RUN useradd -u 10001 myuser && \
-    chown -R myuser:myuser /app && \
-    chmod -R 755 /app
-
 # Switch to the non-root user
-USER myuser
+USER 10015
 
 # Expose port 8000 to the outside world
 EXPOSE 8000
@@ -27,7 +22,8 @@ ENV FLASK_APP=app.py
 # Define the mode of deployment
 ENV FLASK_ENV=development
 
-
+# Run app.py when the container launches
+CMD ["python3", "main.py"]
 
 # Stage 2: Build NGINX
 FROM nginx:latest AS nginx_server
@@ -54,5 +50,3 @@ RUN pg_ctl initdb -D /var/lib/postgresql/data && \
     pg_ctl stop -D /var/lib/postgresql/data
 
 
-# Run app.py when the container launches
-CMD ["python3", "main.py"]
