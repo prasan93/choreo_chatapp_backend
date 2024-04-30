@@ -41,7 +41,7 @@ ENV POSTGRES_PASSWORD=Prasan123#
 ENV DB_NAME=idea
 ENV DB_USERNAME=postgres
 ENV DB_PASSWORD=Prasan123#
-ENV DB_HOST=init-db
+ENV DB_HOST=localhost
 ENV DB_PORT=5432
 
 # Expose PostgreSQL port
