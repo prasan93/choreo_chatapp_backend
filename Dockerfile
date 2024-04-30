@@ -54,5 +54,5 @@ RUN pg_ctl initdb -D /var/lib/postgresql/data && \
     pg_ctl stop -D /var/lib/postgresql/data
 
 
-    # Run app.py when the container launches
+# Run app.py when the container launches
 CMD ["python3", "main.py"]
